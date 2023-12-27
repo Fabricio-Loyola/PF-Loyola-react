@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getProducts, useGetProductById } from "../services";
+import { getProducts, getProductById, getProductByCategory } from "../services";
 
 
 
@@ -49,3 +49,20 @@ export const useGetProductById = (id) => {
 
 
 }
+
+export const useGetProductByCategory = (category) => {
+    const [productsData, setProductsData] = useState([]); 
+
+    useEffect (() => {
+        getProductByCategory(category)
+        .then((response) => {
+            console.log(response)
+            setProductsData(response.data.products);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }, [category]);
+
+    return { productsData };
+};

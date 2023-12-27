@@ -5,28 +5,31 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import CartWidget from './CartWidget';
 import { Link } from 'react-router-dom';
+import { useCategory } from '../hooks/useCategory';
+
 
 const NavBar = () => {
+
+    const { category } = useCategory(); 
 
     return(
         <Navbar expand="lg" className="bg-body-tertiary">
     <Container>
-        <Navbar.Brand href="/">CipherTech</Navbar.Brand>
+        <Link to='/'>CipherTech</Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="#link">Productos</Nav.Link>
+            <Nav.Link href="#link">Link</Nav.Link>
             <NavDropdown title="Categorias" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Gaming</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-                Celulares
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Consolas</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-                Monitores
-            </NavDropdown.Item>
+            {
+                category.map((item, index) => {
+                return <NavDropdown.Item key={index} >
+                    <Link to={`category/${item}`}>{item}</Link>
+                </NavDropdown.Item>;
+                })
+            }
+
+            
             </NavDropdown>
         </Nav>
         </Navbar.Collapse>
