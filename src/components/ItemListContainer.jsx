@@ -10,17 +10,23 @@ const ItemListContainer = ({productsData}) => {
         {
             productsData.map(products => {
                 return(
-                    <Card key={products.id} style={{ width: '18rem' }}>
-                    <Link to={`/item/${products.id}`}> <Card.Img variant="top" src={products.thumbnail} /> </Link>
-                    <Card.Body>
-                    <Card.Title>{products.title}</Card.Title>
-                    <Card.Text>
-                        {products.description}
-                    </Card.Text>
-                    <div>{products.price}</div>
-                    <Button variant="primary">Añadir al carrito</Button>
-                </Card.Body>
-                </Card>
+                    <Card key={products.id} style={{ width: '18rem', margin: '10px', border: '1px solid #ccc', borderRadius: '8px', padding: '10px' }}>
+    <Link to={`/item/${products.id}`}>
+        <Card.Img variant="top" src={products.thumbnail} />
+    </Link>
+    <Card.Body>
+        <Link to={`/item/${products.id}`} style={{ textDecoration: 'none' }}>
+            <Card.Title style={{ fontSize: '1.2rem', color: 'blue' }}>{products.title}</Card.Title>
+        </Link>
+        <Card.Text style={{ fontSize: '0.9rem', color: '#333' }}>
+            {products.description}
+        </Card.Text>
+        <div style={{ fontSize: '1.1rem', fontWeight: 'bold', color: 'green' }}>Precio: {products.price}</div>
+        <Button variant="primary">Añadir al carrito</Button>
+    </Card.Body>
+</Card>
+
+                
 
                 )
             })
