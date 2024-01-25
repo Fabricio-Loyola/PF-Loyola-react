@@ -8,9 +8,13 @@ import { Link } from 'react-router-dom';
 import { useCategory } from '../hooks/useCategory';
 
 
-const NavBar = () => {
 
+
+
+const NavBar = () => {
     const { category } = useCategory(); 
+
+    
 
     return(
         <Navbar expand="lg" className="bg-body-tertiary">
